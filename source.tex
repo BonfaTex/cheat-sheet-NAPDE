@@ -2,23 +2,283 @@
 
 % =================================================
 
-\section{Stat s-m-c}
+\section{Diffusion/Elliptic Problems}
 
 % =================================================
 
-\subsection{Stat sufficienti}
-
-Se $T$ è non distorto ed efficiente (cioè la sua var raggiunge $l_{CR}$) allora $T$ è UMVUE (però non è che l'UMVUE raggiunge sempre tale limite)
+\textbf{Weak Formulation.} Given $V$, $F:V\to\RR$ functional and $a:V\times V\to\RR$ bilinear form,
+\begin{equation*}
+\boxed{\text{find } u\in V\ :\ a(u,v)=F(v)\quad\forall v\in V}\qquad\quad
+\end{equation*}
 
 \smallskip
 
-\textbf{Curva ROC per classificatori binari}: Grafico in cui $x$ è 1-specificità e $y$ è sensibilità
+\textbf{Lax-Milgram Lemma.} Assume that:
+\begin{enumerate}
+\item $V$ Hilbert space with $\norm{\cdot}_V$ and $\sca{\cdot,\cdot}$
+\item $F\in V'$, i.e. $\abs{F(v)}\leq \norm{F}_{V'}\norm{v}_V$
+\item $a$ cont., i.e. $\abs{a(u,v)}\leq M \norm{u}_V\norm{v}_V$
+\item $a$ coercive, i.e. $a(v,v)\geq \alpha \norm{v}_V^2$
+\end{enumerate}
+Then: $\exists\,!\ u$ sol. di WF, and $\norm{u}_V\leq \nicefrac{\norm{F}_{V'}}{\alpha}$
+
+\medskip
+
+\textbf{Galerkin Approximation.} If you can build $V_h\subset V$ s.t. $\text{dim }V_h=N_h<\infty$ ($\Rightarrow$ $V_h$ closed subspace), then WF becomes G:
+\begin{equation*}
+\boxed{\text{find } u_h\in V_h\ :\ a(u_h,v_h)=F(v_h)\quad\forall v_h\in V_h}\qquad
+\end{equation*}
+
+\begin{itemize}
+\item \emph{well-posedness} follows from LM
+\item \emph{stability} is the continuous dependence from data in LM
+\item \emph{consistency} $\equiv$ \textbf{Galerkin Orthogonality}:
+\begin{equation*}
+a(u-u_h,v_h)=0\qquad\forall v_h\in V_h
+\end{equation*}
+\item if we assume \textbf{space saturation}
+\begin{equation*}
+\inf_{v_h\in V_h}\norm{v-v_h}_V=0\quad\forall v\in V
+\end{equation*}
+then \emph{convergence} $\equiv$ \textbf{Céa Lemma}:
+\begin{equation*}
+\norm{u-u_h}_V\leq \frac{M}{\alpha}\,\inf_{v_h\in V_h}\norm{u-v_h}_V
+\end{equation*}
+(Céa + space saturation $\equiv$ convergence)
+\end{itemize}
+
+Last but not least: Problem G is equivalent to the following linear system of equations:
+\begin{equation*}
+\boxed{\text{find } \uv\in\RR^{N_h}\ :\ A\uv=\Fv}\qquad\qquad
+\end{equation*}
+where $A\in\RR^{N_h\times N_h},\ \Fv\in\RR^{N_h}$.
+
+\begin{proof}
+$V_h=\text{span}\left\{ \phi_1,\dots,\phi_{N_h} \right\}$ so
+\begin{equation*}
+u_h(\xv)=\sum_{j=1}^{N_h} U_j \phi_j(\xv),\quad U_j\in\RR\ \forall j
+\end{equation*}
+thus G becomes: Find $\left\{ U_j \right\}_{j=1}^{N_h}$ s.t.
+\begin{gather*}
+a\left( \sum_j U_j\phi_j,\phi_i \right)=F( \phi_i )\quad\forall\, i=1:N_h \\
+\sum_j U_j\, a(\phi_j,\phi_i) = F(\phi_i)\quad\forall\, i=1:N_h \\
+\sum_j A_{ij}\,U_j=F_i\quad\forall\, i=1:N_h \\
+A\Uv=\Fv
+\end{gather*}
+\end{proof}
+
+Moral of the story: $V_h$ must be chosen to ensure the saturation assumption and the computation of the integrals $A_{ij}=a(\phi_j,\phi_i)$ and $F_i=F(\phi_i)$.
+
+\medskip
+
+\textbf{The Finite Element Method.}
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
 
 
+\bigskip
 
+\bigskip
 
+\bigskip
 
+\bigskip
 
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+\bigskip
+
+a
 
 
 

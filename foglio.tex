@@ -11,6 +11,12 @@
 \usepackage{yhmath}
 \usepackage{color}
 
+\usepackage{nicefrac, xfrac}
+%\usepackage{mathtools}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\sca}[1]{\left\langle #1 \right\rangle}
+
 
 % Bold
 \renewcommand{\AA}{\mathbb A}
@@ -263,7 +269,7 @@ linewidth=2pt,
 innerbottommargin=5pt]{blackBox}
 
 \renewcommand{\qed}{\tag*{$\blacksquare$}}
-\renewenvironment{proof}{\begin{blackBox}\begin{proofT}}{\end{proofT}\end{blackBox}}
+\renewenvironment{proof}{\begin{blackBox}\begin{proofT}}{\[\qed\]\end{proofT}\end{blackBox}}
 
 % -----------------------------------------------------------------------
 
