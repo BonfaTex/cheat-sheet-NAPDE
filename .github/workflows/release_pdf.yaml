@@ -30,7 +30,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex
+          root_file: foglio.tex
           latexmk_shell_escape: true
       
       # Questo elimina il commit_hash.part
