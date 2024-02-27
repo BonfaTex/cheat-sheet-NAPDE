@@ -44,6 +44,9 @@ then \emph{convergence} $\equiv$ \textbf{Céa Lemma}:
 \begin{equation*}
 \norm{u-u_h}_V\leq \frac{M}{\alpha}\,\inf_{v_h\in V_h}\norm{u-v_h}_V
 \end{equation*}
+\begin{proof}
+See whiteboards.
+\end{proof}
 (Céa + space saturation $\equiv$ convergence)
 \end{itemize}
 
@@ -54,24 +57,16 @@ Last but not least: Problem G is equivalent to the following linear system of eq
 where $A\in\RR^{N_h\times N_h},\ \Fv\in\RR^{N_h}$.
 
 \begin{proof}
-$V_h=\text{span}\left\{ \phi_1,\dots,\phi_{N_h} \right\}$ so
-\begin{equation*}
-u_h(\xv)=\sum_{j=1}^{N_h} U_j \phi_j(\xv),\quad U_j\in\RR\ \forall j
-\end{equation*}
-thus G becomes: Find $\left\{ U_j \right\}_{j=1}^{N_h}$ s.t.
-\begin{gather*}
-a\left( \sum_j U_j\phi_j,\phi_i \right)=F( \phi_i )\quad\forall\, i=1:N_h \\
-\sum_j U_j\, a(\phi_j,\phi_i) = F(\phi_i)\quad\forall\, i=1:N_h \\
-\sum_j A_{ij}\,U_j=F_i\quad\forall\, i=1:N_h \\
-A\Uv=\Fv
-\end{gather*}
+See whiteboards.
 \end{proof}
 
 Moral of the story: $V_h$ must be chosen to ensure the saturation assumption and the computation of the integrals $A_{ij}=a(\phi_j,\phi_i)$ and $F_i=F(\phi_i)$.
 
 \medskip
 
-\textbf{The Finite Element Method.}
+\textbf{The Finite Element Method.} We consider a domain $\Omega$ with polygonal shape (we do not take into account error due to the approximation of a non-polygonal domain with a FE grid). A \textbf{mesh} is a finite cover of $K$ non-overlapping triangles, also called \emph{triangulation}: $\Tc=\bigcup K$. Actually: in 1D, intervals; in 2D, triangles but we'll see also quadrilaterals; in 3D, tetrahedra but we'll see also hexahedra.
+
+
 
 \bigskip
 

@@ -252,7 +252,8 @@
 
 \RequirePackage[framemethod=default]{mdframed}
 
-\newmdenv[skipabove=5pt,
+\newmdenv[
+skipabove=5pt,
 skipbelow=0pt,
 rightline=false,
 leftline=false,
@@ -268,8 +269,7 @@ rightmargin=0cm,
 linewidth=2pt,
 innerbottommargin=5pt]{blackBox}
 
-\renewcommand{\qed}{\tag*{$\blacksquare$}}
-\renewenvironment{proof}{\begin{blackBox}\begin{proofT}}{\[\qed\]\end{proofT}\end{blackBox}}
+\renewenvironment{proof}{\begin{blackBox}\begin{proofT}}{\end{proofT}\end{blackBox}}
 
 % -----------------------------------------------------------------------
 
