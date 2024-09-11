@@ -1,6 +1,6 @@
-\documentclass[8pt,a4paper]{article}
+\documentclass[a4paper]{article}
 
-\usepackage{amsmath, amssymb, amsthm}
+\usepackage{amsmath, amssymb, amsthm,stackengine}
 \usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{multicol}
@@ -9,13 +9,101 @@
 \usepackage{etoolbox}
 \usepackage{cancel}
 \usepackage{yhmath}
-\usepackage{color}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[overload]{empheq} % For braced-style systems of equations.
+
+\usepackage{bm}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{centernot}
+\usepackage{tikz}
+\newcommand{\circled}[1]{%
+  \tikz[baseline=(char.base)]\node[shape=circle,draw,inner sep=2pt] (char) {#1};%
+}
+
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\itshape}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem*{theorem}{Theorem}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+\mdfdefinestyle{theoremstyle}{
+    linecolor=red,
+    linewidth=1pt,
+    roundcorner=5pt,
+    innertopmargin=2pt,
+    innerbottommargin=2pt,
+    innerrightmargin=4pt,
+    innerleftmargin=4pt,
+    backgroundcolor=red!10,
+    nobreak=true,
+    leftmargin=0pt,
+    rightmargin=0pt,
+    skipabove=3pt
+}
+
+\surroundwithmdframed[style=theoremstyle]{theorem}
+
+%\usepackage[mathabx]{mathabx}
+
+% Declare necessary fonts from mathabx
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+  <-6> matha5 <6-7> matha6 <7-8> matha7
+  <8-9> matha8 <9-10> matha9
+  <10-12> matha10 <12-> matha12
+}{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+
+% Declare necessary fonts from mathabx
+\DeclareFontFamily{U}{mathb}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathb}{m}{n}{
+  <-6> mathb5 <6-7> mathb6 <7-8> mathb7
+  <8-9> mathb8 <9-10> mathb9
+  <10-12> mathb10 <12-> mathb12
+}{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+
+\DeclareMathSymbol{\coloneq}       {3}{mathb}{"15}
+\DeclareMathSymbol{\eqcolon}       {3}{mathb}{"16}
+\DeclareMathSymbol{\subsetneqq}    {3}{matha}{"90}
+\DeclareMathSymbol{\nLeftarrow}    {3}{matha}{"F6}
+\DeclareMathAccent{\abxring}       {0}{mathb}{"38}
+
+\newcommand{\impliesnotimplied}{%
+  \mathrel{%
+    \vcenter{\offinterlineskip
+      \ialign{##\cr$\nLeftarrow$\cr\noalign{\kern+1pt}$\Rightarrow$\cr}%
+    }%
+  }%
+}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\definecolor{forestgreen(web)}{rgb}{0.13, 0.55, 0.13}
+\definecolor{lavender(floral)}{rgb}{0.71, 0.49, 0.86}
 
 \usepackage{nicefrac, xfrac}
 %\usepackage{mathtools}
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \newcommand{\sca}[1]{\left\langle #1 \right\rangle}
+
+%\usepackage{xcolor}
+\usepackage{titlesec}
+
+%\usepackage{wasysym}
+%\smiley{}
+
+\usepackage{tikzsymbols}
 
 
 % Bold
@@ -130,12 +218,6 @@
 \newcommand{\yv}{\mathbf{y}}
 \newcommand{\zv}{\mathbf{z}}
 
-% Overarrow Little Vector
-\newcommand{\bev}{\overrightarrow{\beta}}
-\newcommand{\bbv}{\overrightarrow{b}}
-\newcommand{\erv}{\overrightarrow{\varepsilon}}
-\newcommand{\yev}{\overrightarrow{y}}
-
 \renewcommand{\hat}{\widehat}
 
 % differenziale
@@ -169,61 +251,38 @@
 \usepackage{dsfont} % per funzione indicatrice
 \newcommand{\Ind}{\mathds{1}} % funzione indicatrice
 
-\DeclareMathOperator{\MCD}{MCD}
 \DeclareMathOperator{\Det}{det} % determinante
-\DeclareMathOperator{\Var}{Var} % varianza
-\DeclareMathOperator{\Cov}{Cov} % covarianza
 \DeclareMathOperator{\Img}{Im}
-\DeclareMathOperator{\Col}{Col}
 \DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\Bi}{Bi} % binomiale
-\DeclareMathOperator{\Be}{Be} % bernoulli
 \DeclareMathOperator{\ArgMin}{ArgMin}
-\DeclareMathOperator{\SSSS}{SS}
-
-\newcommand{\Xn}{\overline{X}_n}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator{\Div}{div}
+\newcommand{\nabladot}{\nabla\!\!\cdot\!}
+\DeclareMathOperator{\Lip}{Lip}
 
 \renewcommand{\theta}{\vartheta}
 
-% per far essere piccoli sum e prod
-\makeatletter
-\newcommand{\changeoperator}[1]{%
-  \csletcs{#1@saved}{#1@}%
-  \csdef{#1@}{\changed@operator{#1}}%
-}
-\newcommand{\changed@operator}[1]{%
-  \mathop{%
-    \mathchoice{\textstyle\csuse{#1@saved}}
-               {\csuse{#1@saved}}
-               {\csuse{#1@saved}}
-               {\csuse{#1@saved}}%
-  }%
-}
-\makeatother
-
-\changeoperator{sum}
-\changeoperator{prod}
+%\DeclareMathOperator{\ker}{ker}
  
  % Turn off header and footer
 \pagestyle{empty}
 
 % Redefine section commands to use less space
 \makeatletter
+
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
                                 {-0.1ex plus -.5ex minus -.2ex}%
                                 {1.5ex plus .2ex}%x
-                                {\normalfont\large\bfseries}}
+                                {\center\normalfont\large\bfseries\color{red}}}
+
 \renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
-                                {2ex plus 0ex minus 0ex}%
+                                {-0.1ex plus 0ex minus 0ex}%
                                 {1.5ex plus 0ex}%
-                                {\normalfont\scriptsize\bfseries}}
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
-                                {-1ex plus -.5ex minus -.2ex}%
-                                {1ex plus .2ex}%
-                                {\normalfont\small\bfseries}}
+                                {\normalfont\scriptsize\color{red}}}
+
 \makeatother
 
-%\titlespacing\section{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
+\titlespacing\section{0pt}{0pt plus 0pt minus 0pt}{0pt plus 0pt minus 0pt}
 
 % Don't print section numbers
 \setcounter{secnumdepth}{0}
@@ -231,63 +290,36 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt plus 0ex}
 
-% Per le dimostrazioni:
-
-\definecolor{grey245}{RGB}{245,245,245}
-
-\newtheoremstyle{demo} % Theorem style name
-{0pt}% Space above
-{0pt}% Space below
-{\normalfont}% Body font
-{}% Indent amount
-{\tiny}% Theorem head font --- {\small\bf}
-{.\;}% Punctuation after theorem head
-{0.25em}% Space after theorem head
-{\small\thmname{#1}\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
-%{\small\thmname{#1}% Theorem text (e.g. Theorem)
-\thmnote{\nobreakspace\the\thm@notefont\normalfont\bf\scshape\footnotesize{(#3)}}}% Optional theorem note
-
-\theoremstyle{demo}
-\newtheorem*{proofT}{\underline{Proof}}
-
-\RequirePackage[framemethod=default]{mdframed}
-
-\newmdenv[
-skipabove=5pt,
-skipbelow=0pt,
-rightline=false,
-leftline=false,
-topline=false,
-bottomline=false,
-linecolor=black,
-backgroundcolor=grey245!0,
-innerleftmargin=0pt,
-innerrightmargin=0pt,
-innertopmargin=0pt,
-leftmargin=0cm,
-rightmargin=0cm,
-linewidth=2pt,
-innerbottommargin=5pt]{blackBox}
-
-\renewenvironment{proof}{\begin{blackBox}\begin{proofT}}{\end{proofT}\end{blackBox}}
-
 % -----------------------------------------------------------------------
 
 \begin{document}
 
+\begin{equation*}
+\boxed{
+\int_\Omega \text{div}\,\fv\ g=\int_{\partial\Omega}\fv\cdot\nv\ g-\int_\Omega \fv\cdot\nabla g} \qquad \qquad
+\boxed{
+\int_\Omega \Delta u\ v=\int_{\partial\Omega}\frac{\partial u}{\partial n}\ v-\int_\Omega \nabla u\cdot\nabla v}
+\end{equation*}
+
+\bigskip
+
 \raggedright
 \footnotesize
-\begin{multicols*}{3}
+\begin{multicols*}{2}
 
 % multicol parameters
-% These lengths are set only within the two main columns
-%\setlength{\columnseprule}{0.25pt}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{red}}
 \setlength{\premulticols}{1pt}
 \setlength{\postmulticols}{1pt}
 \setlength{\multicolsep}{1pt}
 \setlength{\columnsep}{2pt}
 
-\input{source}
+\input{chapters/cap01}
+\input{chapters/cap02}
+\input{chapters/cap03}
+\input{chapters/cap04}
 
 \end{multicols*}
+
 \end{document}
