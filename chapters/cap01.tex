@@ -346,7 +346,7 @@ a(v,v)\geq \mu_0 \norm{\nabla v}_{L^2(\Omega)}^2 \overset{\eqref{eqn:PoincareUse
 
 \newcolumn
 
-Analysis of G:
+Analysis of (G):
 \begin{itemize}
 \item \emph{well-posedness} follows from LM (being $V_h$ a closed subspace of $V$)
 \item \emph{stability} is the continuous dependence from data \eqref{eqn:contData}
@@ -390,7 +390,7 @@ Since AWF holds $\forall\,v\in V$, it holds $\forall\,v_h\in V_h\subseteq V$ too
 We have
 \begin{align*}
 \alpha\norm{u-u_h}_V^2&\overset{(iv)}{\leq} a(u-u_h,u-u_h) \\
-&\,\,=a(u-u_h,u\,{\color{green}-v_h+v_h}-u_h) \\
+&\,\,=a(u-u_h,u\,{\color{red}-v_h+v_h}-u_h) \\
 &\,\,=a(u-u_h,u-v_h)+\underbracket[0.5pt]{a(u-u_h,\underbracket[0.5pt]{v_h-u_h}_{\eqcolon w_h})}_{=0\text{ by GO}} \\
 &\overset{(iii)}{\leq} M \norm{u-u_h}_V \norm{u-v_h}_V\quad \forall\,v_h\in V_h \\
 \Longrightarrow\quad \underbracket[0.5pt]{ \norm{u-u_h}_V }_{\text{error}}&\leq \frac{M}{\alpha}\,\norm{u-v_h}_V\quad\forall\,v_h\in V_h \\
@@ -606,7 +606,7 @@ which, moreover, guarantees (SP).
 
 \smallskip
 
-$\circledast$ if you want to be explicit when using \eqref{eq:bdsl2} and \eqref{eq:bdsh1} you have to carefully deal with the two components of the $H^1$-norm.
+$\circledast$ If you want to be explicit when using \eqref{eq:bdsl2} and \eqref{eq:bdsh1} you have to carefully deal with the two components of the $H^1$-norm.
 
 \newpage
 
